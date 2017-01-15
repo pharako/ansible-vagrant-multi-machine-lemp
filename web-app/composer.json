@@ -1,0 +1,5 @@
+{
+    "require": {
+        "pharako/mysql-dbal": "^0.0.1"
+    }
+}

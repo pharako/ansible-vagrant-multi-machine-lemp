@@ -1,0 +1,70 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update system packages
+      tags: system
+      apt:
+        update_cache: yes
+    - name: Set timezone
+      tags: system
+      timezone:
+        name: UTC
+  vars_files:
+    - vars/main.yml
+- hosts: db
+  become: yes
+  roles:
+    - role: geerlingguy.mysql
+  tasks:
+    - name: Install zip (unzip etc.)
+      tags: system
+      apt:
+        name: zip
+        state: present
+    - name: Copy MySQL dump file
+      tags: db
+      copy:
+        src: ../mysql/web-app.sql
+        dest: /tmp
+    - name: Restore database from dump file
+      tags: db
+      mysql_db:
+        name: web-app
+        state: import
+        target: /tmp/web-app.sql
+  vars_files:
+    - vars/main.yml
+- hosts: web
+  become: yes
+  roles:
+    - role: geerlingguy.nginx
+    - role: geerlingguy.php
+    - role: franklinkim.environment
+  tasks:
+    - name: Remove Nginx html directory
+      tags: web
+      file:
+        state: absent
+        path: "/var/www/html"
+    - name: Change default Nginx vhost
+      tags: web
+      template: src=templates/nginx-vhost-default.j2 dest=/etc/nginx/sites-available/default
+      notify: restart nginx
+    - name: Show environment variables
+      tags: [web]
+      shell: env | sort
+      register: environment_variables
+    - debug: msg="{{ environment_variables.stdout }}"
+      tags: [web]
+    - name: Install Composer packages
+      tags: [web, composer]
+      composer:
+        command: install
+        working_dir: "/var/www/web-app"
+  handlers:
+    - name: restart nginx
+      service: name=nginx enabled=yes state=restarted
+  vars_files:
+    - vars/main.yml
+

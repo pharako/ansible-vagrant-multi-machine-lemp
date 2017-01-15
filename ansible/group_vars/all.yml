@@ -1,0 +1,9 @@
+---
+db_write:
+  host: db1
+  port: 3306
+  name: web-app
+  username: web-app
+  password: web-app
+  encoding: utf8
+  collation: utf8_unicode_ci

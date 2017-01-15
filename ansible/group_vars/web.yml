@@ -1,0 +1,12 @@
+---
+nginx:
+  docroot: /var/www/web-app
+  servername: web-app.local
+  serverport: 80
+
+environment_config:
+  DB_WRITE_HOST: "{{ db_write.host }}"
+  DB_WRITE_PORT: "{{ db_write.port }}"
+  DB_WRITE_DBNAME: "{{ db_write.name }}"
+  DB_WRITE_USER: "{{ db_write.username }}"
+  DB_WRITE_PASSWORD: "{{ db_write.password }}"
