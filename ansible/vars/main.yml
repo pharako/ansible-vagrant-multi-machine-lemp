@@ -13,8 +13,11 @@ mysql_users:
     password: "{{ db_write.password }}"
     priv: "{{ db_write.username }}.*:ALL"
 
+php_version: '7.1'
+
 php_packages:
   - php
+  - php-apcu
   - php-cli
   - php-common
   - php-curl
@@ -26,8 +29,8 @@ php_packages:
 php_webserver_daemon: "nginx"
 
 php_enable_php_fpm: true
-php_fpm_listen: "/var/run/php/php7.0-fpm.sock"
-php_fpm_listen_allowed_clients: "/var/run/php/php7.0-fpm.sock"
+php_fpm_listen: "/var/run/php/php{{ php_version }}-fpm.sock"
+php_fpm_listen_allowed_clients: "/var/run/php/php{{ php_version }}-fpm.sock"
 php_expose_php: "False"
 php_memory_limit: "256M"
 php_date_timezone: "UTC"

@@ -1,7 +1,7 @@
 A Vagrant profile that installs a LEMP stack split into two Ubuntu 16.04 (Xenial) virtual machines using VirtualBox for virtualization and Ansible for provisioning.
 
 * Machine 1 (`db1`): MySQL 5.7
-* Machine 2 (`web1`): Nginx, PHP 7.0 and PHP FPM
+* Machine 2 (`web1`): Nginx, PHP 7.1 and PHP FPM
 
 ## Installation
 

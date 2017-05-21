@@ -39,7 +39,9 @@
   become: yes
   roles:
     - role: geerlingguy.nginx
+    - role: geerlingguy.php-versions
     - role: geerlingguy.php
+    - role: geerlingguy.composer
     - role: franklinkim.environment
   tasks:
     - name: Remove Nginx html directory
