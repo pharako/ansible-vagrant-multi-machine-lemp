@@ -4,3 +4,9 @@ CREATE TABLE IF NOT EXISTS `things` (
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`thing_id`)
 ) ENGINE=InnoDB;
+
+INSERT INTO `things` (`name`) VALUES
+("Thing1"),
+("Thing2"),
+("Thing3");
+

@@ -21,6 +21,7 @@ php_packages:
   - php-cli
   - php-common
   - php-curl
+  - php-fpm
   - php-intl
   - php-mbstring
   - php-mysql
@@ -34,5 +35,4 @@ php_fpm_listen_allowed_clients: "/var/run/php/php{{ php_version }}-fpm.sock"
 php_expose_php: "False"
 php_memory_limit: "256M"
 php_date_timezone: "UTC"
-php_allow_url_fopen: "Off"
 

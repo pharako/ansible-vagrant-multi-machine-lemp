@@ -70,5 +70,5 @@ The `index.php` file (inside the `web-app` directory) contains a simple example 
 
 ### Environment variables
 
-The database credentials are exposed as environment variables in the web VM (`web1`), so your PHP application can make use of them instead of relying on hard-coded values; frameworks like Symfony allow you to use those variables from inside their configuration files.
+The database credentials are exposed as environment variables in the web VM (`web1`), so your PHP application can make use of them instead of relying on hard-coded values; frameworks like [Symfony](https://symfony.com/doc/current/configuration/external_parameters.html) allow you to use those variables from inside their configuration files.
 
